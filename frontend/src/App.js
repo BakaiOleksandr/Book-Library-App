@@ -13,7 +13,7 @@ function App() {
           <BookForm />
         </div>
         <div className="app-right-column">
-          {/* <Filter /> */}
+          <Filter />
           <BookList />
         </div>
       </main>
