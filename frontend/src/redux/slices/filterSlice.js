@@ -3,6 +3,7 @@ import {createSlice} from '@reduxjs/toolkit';
 const initialState = {
   title: '',
   author: '',
+  onlyFavorite: false,
 };
 
 const filterSlice = createSlice({
@@ -17,15 +18,28 @@ const filterSlice = createSlice({
       return {...state, title: action.payload};
     },
     //action 2
-    resetFilters: (state) => {
+    resetFilters: () => {
       return {...initialState};
     },
     //action 3
     setAuthorFilter: (state, action) => {
       return {...state, author: action.payload};
     },
+    //action 4
+    setOnlyFavoriteFilter: (state) => {
+      return {...state, onlyFavorite: !state.onlyFavorite};
+      //!state.onlyFavorite- because we have only boolean type(false and true)
+    },
   },
 });
+
+//export actions, destructured from filterSlice
+export const {
+  setTitleFilter,
+  resetFilters,
+  setAuthorFilter,
+  setOnlyFavoriteFilter,
+} = filterSlice.actions;
 
 export const selectTitleFilter = (state) => state.filter.title;
 //state.filter-where 'filter' is the name of Slice
@@ -33,8 +47,7 @@ export const selectTitleFilter = (state) => state.filter.title;
 // console.log(filterSlice.actions.setTitleFilter('test'))
 export const selectAuthorFilter = (state) => state.filter.author;
 // console.log(filterSlice.actions.setAuthorFilter('test'));
-//export actions, destructured from filterSlice
-export const {setTitleFilter, resetFilters, setAuthorFilter} =
-  filterSlice.actions;
+// export filterOnlyFavorite
+export const selectOnlyFavoriteFilter = (state) => state.filter.onlyFavorite;
 //export reducer
 export default filterSlice.reducer;
