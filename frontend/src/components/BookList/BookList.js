@@ -1,6 +1,10 @@
 import {useSelector, useDispatch} from 'react-redux';
 import {BsBookmarkStarFill, BsBookmarkStar} from 'react-icons/bs';
-import {deleteBook, toggleFavorite} from '../../redux/books/actionCreators';
+import {
+  deleteBook,
+  toggleFavorite,
+  selectBooks,
+} from '../../redux/slices/booksSlice';
 import './BookList.css';
 import {
   selectTitleFilter,
@@ -11,7 +15,7 @@ import {
 const BookList = () => {
   const dispatch = useDispatch();
   //subscribe to store
-  const books = useSelector((state) => state.books);
+  const books = useSelector(selectBooks);
   //subscribe to filter store, by title
   const titleFilter = useSelector(selectTitleFilter);
   //subscribe to filter store by author
